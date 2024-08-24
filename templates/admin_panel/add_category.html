@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Add Category{% endblock title %}
+
+{% block style %}
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-container h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        text-align: center;
+    }
+    .form-container label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+    .form-container input[type="text"],
+    .form-container textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .form-container button {
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .form-container button:hover {
+        background-color: #218838;
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Add New Category</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Category Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+
+        <button type="submit">Add Category</button>
+    </form>
+</div>
+{% endblock content %}

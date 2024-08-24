@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Панель пользователя{% endblock title %}
+{% block content %}
+    <h1>Добро пожаловать, {{ user.username }}</h1>
+    <ul>
+        <li><a href="{% url 'menu_list' %}">Меню</a></li>
+        <li><a href="{% url 'cart' %}">Корзина</a></li>
+        <li><a href="{% url 'order_history' %}">История заказов</a></li>
+        <li><a href="{% url 'profile' %}">Профиль</a></li>
+    </ul>
+{% endblock content %}

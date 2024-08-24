@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Cart{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h2>Your Cart</h2>
+    {% if cart_items %}
+    <ul>
+        {% for item in cart_items %}
+        <li>
+            {{ item.dish.name }} - {{ item.quantity }} x ${{ item.dish.price }} = ${{ item.get_total_price }}
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'order_create' %}" class="btn btn-primary">Place Order</a>
+    {% else %}
+    <p>Your cart is empty.</p>
+    {% endif %}
+</div>
+{% endblock content %}

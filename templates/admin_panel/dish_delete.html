@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-container h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        text-align: center;
+        color: #dc3545;
+    }
+    .form-container p {
+        margin-bottom: 20px;
+        font-size: 18px;
+        text-align: center;
+    }
+    .form-container button {
+        width: 100%;
+        padding: 10px;
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .form-container button:hover {
+        background-color: #c82333;
+    }
+    .form-container a {
+        display: inline-block;
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        background-color: #6c757d;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+    .form-container a:hover {
+        background-color: #5a6268;
+    }
+</style>
+{% endblock style %}
+
+{% block title %}Delete Dish{% endblock title %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Delete Dish</h2>
+    <p>Are you sure you want to delete the dish "{{ object.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete Dish</button>
+    </form>
+    <a href="{% url 'dish_list' %}">Cancel</a>
+</div>
+{% endblock content %}

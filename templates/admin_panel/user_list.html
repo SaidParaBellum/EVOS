@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}User List{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">User List</h2>
+
+    {% if users %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Orders</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>
+                        <a href="{% url 'user_orders' user.id %}" class="btn btn-primary btn-sm" role="button">View Orders</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="text-muted">No users found.</p>
+    {% endif %}
+</div>
+
+{% block extra_css %}
+<style>
+    .table-responsive {
+        margin-top: 20px;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        border-collapse: collapse;
+    }
+
+    .table-bordered {
+        border: 1px solid #dee2e6;
+    }
+
+    .table-bordered th, .table-bordered td {
+        border: 1px solid #dee2e6;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .thead-dark th {
+        background-color: #343a40;
+        color: #ffffff;
+    }
+
+    .btn-primary {
+        color: #ffffff;
+        background-color: #007bff;
+        border-color: #007bff;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+    .text-muted {
+        color: #6c757d;
+    }
+</style>
+{% endblock extra_css %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.btn-primary');
+        buttons.forEach(button => {
+            button.addEventListener('mouseover', function() {
+                button.style.backgroundColor = '#0056b3'; // Darker blue on hover
+            });
+            button.addEventListener('mouseout', function() {
+                button.style.backgroundColor = ''; // Default color
+            });
+        });
+    });
+</script>
+{% endblock extra_js %}
+{% endblock content %}
